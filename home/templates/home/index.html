@@ -1,0 +1,75 @@
+
+{% extends 'base.html' %}
+
+ <html>
+    <head>
+        {% block head %}
+         <title> BiblioTech </title>
+        {%  endblock %}
+    </head>
+
+    <body>
+
+    {% block body %}
+
+        <!-- Container per immagine -->
+        <div id="img" class="container" align="center">
+            <br>
+
+            {% load static from staticfiles %}
+            <img src="{% static "imgIniziale.jpg" %}" />
+
+            <div class="card">
+                <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                 - "Dinosaurs didn't read and now they are extinct. Coincidences?" -
+                </blockquote>
+                </div>
+            </div>
+        </div>
+
+        <!-- Corpo pagina -->
+        <div class="container" id="body_page">
+            <table class="table table-striped">
+
+            {% for book in books %}
+                <form method="post">
+                {% csrf_token %}
+                    <tr>
+                    <td>
+                        <img src="/static/{{ book.img }}" width="200" height="280">
+                    </td>
+                    <td>
+                        <p><H3> {{ book.titolo }} </H3></p>
+                        <br>
+                        <p> <H6 id="color_autore"> {{ book.autore }}</H6></p>
+                    </td>
+                    <td>
+                        <p>{{ book.trama }}</p>
+                        <br> <p>
+                        <button type="button" class="btn btn-outline-dark" id="btn_reviews"
+                               onclick="location.href='/recensione/{{ book.titolo | slugify }}/{{ book.id }}'" >
+                                Reviews </button>
+
+                        {% if user.is_authenticated %}
+                            <button type="button" class="btn btn-outline-primary" id = "btn_borrow"
+                               onclick="location.href='/prestito/{{ book.titolo | slugify }}/{{ book.id }}'">
+                                Borrow me! </button>
+
+                        {% else %}
+                            <button type="button" class="btn btn-outline-info" disabled> Borrow me! </button>
+
+                        {% endif %}
+                        </p>
+                    </td>
+                </tr>
+                </form>
+            {% endfor %}
+
+            </table>
+        </div>
+
+    {% endblock %}
+    </body>
+
+</html>
