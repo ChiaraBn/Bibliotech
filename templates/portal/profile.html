@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+
+<!-- File che contiene il profilo utente -->
+
+<html>
+
+    <head>
+        {% block head %}
+            <title>User Profile</title>
+        {% endblock %}
+
+    </head>
+
+    <body>
+        {% block body %}
+            <br>
+            <!-- Informazioni personali dell'utente loggato -->
+            <div class="container" id="profile-container">
+                <table class="table">
+                <h2> Profile </h2>
+
+                <tr> <td>
+                    <p>
+                    <strong>Email:</strong> {{ user.email }} <br>
+                    <strong>Username:</strong> {{ user.username }} <br>
+                    <strong>Nome:</strong> {{ user.first_name }} <br>
+                    <strong>Cognome:</strong> {{ user.last_name }} <br></p>
+                    <br>
+                </td>
+
+                 <td>
+                    <div class="btn-group">
+                    <p>
+                        {% if param %}
+                             <button type="submit" class="btn btn-link" id="btnBookList"
+                                onclick="location.href='{% url 'prestito:lista' %}'"> Book's List </button>
+                        {% else %}
+                            <button type="submit" class="btn btn-link" id="btnBookList" disabled>
+                                Book's List </button>
+
+                        {% endif %}
+                    </p> </div>
+                </td>
+
+                <td>
+                    <div class="btn-group">
+                    <p>
+                    <button type="button" class="btn btn-link" id="btnChangeProfile"
+                        onclick="location.href='{% url 'portal:edit_profile' %}'" align="right"> Change  </button>
+
+                    <button type="submit" class="btn btn-link" id="btnChangeProfilePw"
+                        onclick="location.href='{% url 'portal:change_pw' %}'"> Change Password </button>
+                    </p>
+                    </div>
+                </td>
+
+               </tr>
+                </table>
+            </div>
+
+        {% endblock %}
+    </body>
+</html>

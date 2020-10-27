@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+
+<!-- Pagina che esegue il reso di uno specifico libro e
+    permette di scegliere se effettuare o meno una recensione su di esso -->
+
+<html>
+
+    <head>
+        {% block head %}
+            <title> Take Back </title>
+        {% endblock %}
+
+    </head>
+
+    <body>
+        {% block body %}
+        <br>
+            <div class="container">
+            <h2> Thank you! </h2><br>
+
+                <table class="table table-borderless">
+                    <tr><td>
+                        <H5>
+                        Your opinion is very important to us! <br><br>
+                        Would like to leave a review?
+                        </h5>
+                    </td></tr>
+
+                    <tr>
+                        <td>
+                            <button type="button" id="btnNoReview" class="btn btn-link"
+                            onclick="location.href='/'"> No </button>
+
+                            <button type="button" id="btnYesReview" class="btn btn-link"
+                             onclick="location.href='/recensione/reso/{{ idbook }}'"> Yes!</button>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+        {% endblock %}
+    </body>
+</html>

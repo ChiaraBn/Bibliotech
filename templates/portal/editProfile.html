@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+
+<!-- File contenente il form che permette la
+    modifica delle credenziali dell'utente -->
+
+<html>
+
+    <head>
+        {% block head %}
+            <title>Edit User</title>
+        {% endblock %}
+
+    </head>
+
+    <body>
+        {% block body %}
+            <br>
+            <div class="container">
+            <h2>Edit User</h2> <br>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <button type="submit" class="btn btn-outline-success"> Change </button>
+                </form>
+            <br><br>
+            </div>
+
+        {% endblock %}
+    </body>
+</html>

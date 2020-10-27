@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+
+<!-- Pagina che viene mostrata nel momento in cui si crea un errore server
+    nell'utilizzo dell'applicazione -->
+
+<html>
+
+    <head>
+        {% block head %}
+            <title> Page 500 </title>
+        {% endblock %}
+
+    </head>
+
+    <body>
+        {% block body %}
+            <br>
+            <div class="container">
+                <h2>
+                    Page 500 <br><br>
+                </h2>
+                <h3>
+                    <p>
+                    Oh No!  <br>
+                    This is the server's error page, go back, something went wrong.
+                    </p>
+                </h3>
+            </div>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,59 @@
+
+{% extends "base.html" %}
+
+<!-- Pagina che ritorna l'elenco di recensioni fatte per uno specifico libro -->
+
+<html>
+
+    <head>
+        {% block head %}
+            <title> Reviews List </title>
+        {% endblock %}
+
+    </head>
+
+    <body>
+        {% block body %}
+        <br>
+            <div class="container">
+            <br>
+                <H2> {{ titolo | title  }} </H2>
+                <br>
+
+                {% if param %}
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col"> User </th>
+                          <th scope="col"> Date </th>
+                          <th scope="col"> Vote </th>
+                          <th scope="col"> Text </th>
+                        </tr>
+                      </thead>
+
+                    <tbody>
+
+                        {% for r in lista_review %}
+                                <tr>
+                                    <td> {{ r.user_id.nome }} {{ r.user_id.cognome }}</td>
+                                    <td> {{ r.data }}</td>
+                                    <td> {{ r.voto }} <strong>/ 5</strong> </td>
+                                    <td> {{ r.testo }}</td>
+                                </tr>
+                        {% endfor %}
+
+                </tbody>
+
+                </table>
+                {% else %}
+                    <h3>
+                    Sorry! <br>
+                    No one has reviewed this book yet.
+                    </h3>
+                {% endif %}
+
+            </div>
+
+        {% endblock %}
+    </body>
+</html>

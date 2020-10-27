@@ -1,0 +1,51 @@
+
+{% extends "base.html" %}
+
+<!-- Pagina che contiene la lista di libri all'attivo di uno specifico utente -->
+
+<html>
+
+    <head>
+        {% block head %}
+            <title> Book's List </title>
+        {% endblock %}
+
+    </head>
+
+    <body>
+        {% block body %}
+        <br>
+
+            <div class="container">
+            <h2> Book's List </h2><br>
+
+            <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col"> Title </th>
+                <th scope="col"> From </th>
+                <th scope="col"> To </th>
+                <th scope="col"> </th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for e in exchange %}
+                    {% if e.user_id.email == user.email %}
+                    <tr>
+                        <td>{{ e.book_id.titolo }} </td>
+                        <td>{{ e.data_inizio }}</td>
+                        <td>{{ e.data_fine }}</td>
+                        <td>
+                            <button type="button" id="btnTakeBack" class="btn btn-link"
+                             onclick="location.href='/prestito/reso/{{ e.book_id_id }}'"> Take Back </button>
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+            </table>
+            </div>
+
+        {% endblock %}
+    </body>
+</html>

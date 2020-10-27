@@ -1,0 +1,77 @@
+
+{% extends "base.html" %}
+
+<!-- Pagina che contiene le informazioni generali per completare il prestito -->
+
+<html>
+
+    <head>
+        {% block head %}
+            <title>Exchange</title>
+        {% endblock %}
+
+    </head>
+
+    <body>
+        {% block body %}
+            <br>
+            <div class="container">
+                <h2> Confirm exchange </h2><br>
+
+                {% if user.is_authenticated %}
+
+                    <form method="post" action="{% url 'prestito:exchange' %}">
+                        {% csrf_token %}
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> ID Book </label>
+                        <div>
+                            <input type="text" readonly class="form-control-plaintext" name="id"
+                                value="{{ id }}">
+                        </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Title </label>
+
+                        <div>
+                            <input type="text" readonly class="form-control-plaintext"
+                                value="{{ titolo | title }}">
+                        </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Name </label>
+                        <div >
+                            <input type="text" readonly class="form-control-plaintext"
+                               value='{{ user.first_name }} {{ user.last_name }}'>
+                        </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> From </label>
+                            <script> document.write(new Date().toLocaleDateString()); </script>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> To
+                            <br> (available for 30 days)
+                            </label>
+                            <script>
+                                var someDate = new Date();
+                                someDate.setDate(someDate.getDate() + 30);
+                                var dateFormated = someDate.toLocaleDateString();
+                                document.write(dateFormated)
+                            </script>
+                        </div>
+
+                        <!-- Pulsante per confermare il prestito -->
+                        <input class="btn btn-primary" type="submit" value="Confirm">
+
+                    </form>
+                {% endif %}
+            </div>
+
+        {% endblock %}
+    </body>
+</html>
