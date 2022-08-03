@@ -4,7 +4,7 @@ BiblioTech è il progetto che realizza una biblioteca virtuale che simula lo sca
 Ebook. È possibile scorrere il catalogo dei libri disponibili, leggere le recensioni degli utenti che hanno letto
 in precedenza il libro selezionato e, ovviamente, prendere in prestito il libro stesso.
 
-## Metodologie
+## Metodologia
 
 Tale progetto è stato realizzato utilizzando il framework **Django**, per lo sviluppo dell'applicazione web, scritta in **Python**.<br>
 E' possibile gestire utenti con **permessi** differenti, mediante logiche di sign in/login, con memorizzazione dei dati con un applicativo database **PostgreSQL**. L’utente admin ha il completo controllo sull’intero progetto.
